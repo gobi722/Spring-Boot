@@ -1,0 +1,6 @@
+com/kriyatec/dynamic/repository/CommonRepository.class
+com/kriyatec/dynamic/controller/CommonController.class
+com/kriyatec/dynamic/entities/datamodel.class
+com/kriyatec/dynamic/service/CommonService.class
+com/kriyatec/dynamic/ApiApplication.class
+com/kriyatec/dynamic/controller/Test.class
