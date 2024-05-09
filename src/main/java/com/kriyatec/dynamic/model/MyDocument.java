@@ -1,13 +1,18 @@
 package com.kriyatec.dynamic.model;
 
 import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection = "data_model")
 public class MyDocument {
     @Id
     private String id;
-
+   
+    @NonNull
     private String columnName;
     private String dataType;
     private String accessMethod;

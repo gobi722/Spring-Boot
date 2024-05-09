@@ -34,16 +34,13 @@ import javax.tools.ToolProvider;
 
 public class DynamicModelGenerator {
 
-    public static Class<?> generateDynamicModelClass(List<Map<String, Object>> dataList , String Model)   {
+    public static StringBuilder generateDynamicModelClass(List<Map<String, Object>> dataList , String Model,StringBuilder classDefinition,String accessidentifier )   {
     	// Start by generating a class skeleton
-    	   StringBuilder classDefinition = new StringBuilder();
-    	   classDefinition.append("import org.springframework.data.mongodb.core.mapping.Document;\n"); // Import necessary annotations
-	        classDefinition.append("import org.springframework.validation.annotation.Validated;\n"); // Import Validated annotation
-	        classDefinition.append("import java.util.List;\n");
+//    	StringBuilder classDefinition = new StringBuilder();
 	        // Append annotations to the class definition
 	        classDefinition.append("@Document(collection = \""+Model+"\")\n");
 	        classDefinition.append("@Validated\n");
-	        classDefinition.append("public class ").append(Model).append(" {\n");
+	        classDefinition.append(accessidentifier+" class ").append(Model).append(" {\n");
 	      
 //	        System.out.println(classDefinition);
     	
@@ -59,54 +56,26 @@ public class DynamicModelGenerator {
 //    	    dataList1.addAll(fieldsList);
 //    	}
 //    			
-    	generateFields(dataList, classDefinition,Model);
-//    	 for (Map<String, Object> field : dataList1) {
-//             String accessMethod = (String) field.get("access_method");
-//             String fieldName = (String) field.get("column_name");
-//             String fieldType = (String) field.get("data_type");
-//
-//             classDefinition.append("private ").append(fieldType).append(" ").append(fieldName).append(";\n");
-//         }
-    	// Iterate over the documents to analyze their fields
-//    	for (Map<String, Object> data : dataList1) {
-//    	    for (Map.Entry<String, Object> entry : data.entrySet()) {
-//    	    	 System.out.println("------------------------");
-//    	    	  
-//    	        String fieldName = entry.getKey();
-//    	        // Check if the field has been seen before
-//    	        if (!seenFields.contains(fieldName)) {
-//    	            Object fieldValue = entry.getValue();
-//    	           
-//    	            // Determine the field type based on the value type
-//    	            String fieldType = determineFieldType(fieldValue);
-//    	            System.out.println(fieldName);
-//    	            System.out.println(fieldValue);
-//    	            System.out.println(fieldType);
-//    	            // Append the field definition to the class skeleton
-//    	            classDefinition.append("    private ").append(fieldType).append(" ").append(fieldName).append(";\n");
-//
-//    	            // Add the field to the set of seen fields
-//    	            seenFields.add(fieldName);
-//    	        }
-//    	    }
-//    	}
+   	generateFields(dataList, classDefinition,Model);
+
 
     	// Close the class definition
     	classDefinition.append("}");
-   	System.out.println(classDefinition);
-    	try {
-            // Use reflection to define the generated class
-            return Class.forName("com.kriyatec.dynamic.model." + Model);
-        } catch (ClassNotFoundException e) {
-            // Define the class if it doesn't already exist
-            try {
-                return createClass(classDefinition.toString(), Model);//"com.kriyatec.dynamic.model." + 
-            } catch (Exception ex) {
-                // Handle the exception appropriately, e.g., log it or rethrow a RuntimeException
-                ex.printStackTrace();
-                throw new RuntimeException("Failed to create dynamic class", ex);
-            }
-        }
+   return classDefinition;
+//    	try {
+//            // Use reflection to define the generated class
+////            return Class.forName("com.kriyatec.dynamic.model." + Model);
+//        } catch (ClassNotFoundException e) {
+//            // Define the class if it doesn't already exist
+//            try {
+//            	return null;
+////                return createClass(classDefinition.toString(), Model);//"com.kriyatec.dynamic.model." + 
+//            } catch (Exception ex) {
+//                // Handle the exception appropriately, e.g., log it or rethrow a RuntimeException
+//                ex.printStackTrace();
+//                throw new RuntimeException("Failed to create dynamic class", ex);
+//            }
+//        }
     }
 
     private static String determineFieldType(Object value) {
@@ -195,49 +164,60 @@ public class DynamicModelGenerator {
 	        }
 	    };
 	}
-	// A method to generate fields recursively for nested objects and arrays
+//	// A method to generate fields recursively for nested objects and arrays
 	private static void generateFields(List<Map<String, Object>> dataList, StringBuilder classDefinition,String Model) {
 		
-	    for (Map<String, Object> data : dataList) {
-	        List<Map<String, Object>> fieldsList = (List<Map<String, Object>>) data.get("fields");
-	        if (fieldsList == null) {
-	            // Handle the case where fieldsList is null (optional)
-	            continue; // Skip processing this data entry
-	        }
-	        for (Map<String, Object> field : fieldsList) {
+	    for (Map<String, Object> field : dataList) {
+//	        List<Map<String, Object>> fieldsList = (List<Map<String, Object>>) data.get("fields");
+//	        if (fieldsList == null) {
+//	            // Handle the case where fieldsList is null (optional)
+//	            continue; // Skip processing this data entry
+//	        }
+//	        for (Map<String, Object> field : fieldsList) {
+	    	 
 	            String accessMethod = (String) field.get("access_method");
 	            String fieldName = (String) field.get("column_name");
 	            String fieldType = (String) field.get("data_type");
-
+	            String fieldAnnonations = (String) field.get("annonations");
+	            if (fieldAnnonations != null) {
+          		  System.out.println(fieldAnnonations);
+		                   classDefinition.append(fieldAnnonations).append("\n");
+  		        }else {
+  		        	  classDefinition.append("\n");
+  		        }
 	            // If the fieldType is an object or an array, handle it recursively
+	           
 	            if (fieldType.equals("object")) {
 	                // Generate the class definition for the nested object
 	                classDefinition.append(accessMethod).append(" ");
-	                classDefinition.append(generateDynamicModelClass((List<Map<String, Object>>) field.get("nested_fields"), fieldName).getName());
 	                String convertedString = convertToLowerCaseFirstLetter(fieldName);
-	                classDefinition.append(" ").append(convertedString).append(";\n");
+	                classDefinition.append(convertedString);
+	               
+	                classDefinition.append(" ").append(fieldName).append(";\n");
 	            } else if (fieldType.equals("array")) {
 	                // Generate the class definition for the array of objects
 	            	
 	                classDefinition.append(accessMethod).append(" ");
 	                classDefinition.append("List<");
 //	                System.out.println(generateDynamicModelClass((List<Map<String, Object>>) field.get("nested_fields"), fieldName).getName());
-	                classDefinition.append(generateDynamicModelClass((List<Map<String, Object>>) field.get("nested_fields"), fieldName).getName());
 	                String convertedString = convertToLowerCaseFirstLetter(fieldName);
-	                classDefinition.append("> ").append(convertedString).append(";\n");
+	                classDefinition.append(convertedString);
+	                
+	                classDefinition.append("> ").append(fieldName).append(";\n");
 	            } else {
 	                // Regular field
+	            	 
 	                classDefinition.append(accessMethod).append(" ").append(fieldType).append(" ").append(fieldName).append(";\n");
 	            }
 	        }
 	    } 
-	}
+//	}
 
 	 public static String convertToLowerCaseFirstLetter(String original) {
 	        if (original == null || original.isEmpty()) {
 	            return original;
 	        }
-	        return Character.toLowerCase(original.charAt(0)) + original.substring(1);
+	        return Character.toUpperCase(original.charAt(0)) + original.substring(1);
 	    }
 }
    
