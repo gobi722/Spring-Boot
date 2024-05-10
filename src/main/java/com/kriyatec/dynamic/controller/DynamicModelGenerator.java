@@ -35,103 +35,19 @@ import javax.tools.ToolProvider;
 public class DynamicModelGenerator {
 
     public static StringBuilder generateDynamicModelClass(List<Map<String, Object>> dataList , String Model,StringBuilder classDefinition,String accessidentifier )   {
-    	// Start by generating a class skeleton
-//    	StringBuilder classDefinition = new StringBuilder();
-	        // Append annotations to the class definition
-	        classDefinition.append("@Document(collection = \""+Model+"\")\n");
+    	       
 	        classDefinition.append("@Validated\n");
 	        classDefinition.append(accessidentifier+" class ").append(Model).append(" {\n");
 	      
 //	        System.out.println(classDefinition);
-    	
-    	// Maintain a set of seen fields to avoid duplication
-//    	Set<String> seenFields = new HashSet<>();
-//    	List<Map<String, Object>> dataList1 = new ArrayList<>();
-//
-//    	for (Map<String, Object> data : dataList) {
-//    	    // Extract the "fields" value from each map in dataList
-//    	    List<Map<String, Object>> fieldsList = (List<Map<String, Object>>) data.get("fields");
-//    	    
-//    	    // Add the extracted "fields" list to dataList1
-//    	    dataList1.addAll(fieldsList);
-//    	}
-//    			
-   	generateFields(dataList, classDefinition,Model);
-
-
+    	    	
+   	       generateFields(dataList, classDefinition,Model);
     	// Close the class definition
-    	classDefinition.append("}");
-   return classDefinition;
-//    	try {
-//            // Use reflection to define the generated class
-////            return Class.forName("com.kriyatec.dynamic.model." + Model);
-//        } catch (ClassNotFoundException e) {
-//            // Define the class if it doesn't already exist
-//            try {
-//            	return null;
-////                return createClass(classDefinition.toString(), Model);//"com.kriyatec.dynamic.model." + 
-//            } catch (Exception ex) {
-//                // Handle the exception appropriately, e.g., log it or rethrow a RuntimeException
-//                ex.printStackTrace();
-//                throw new RuntimeException("Failed to create dynamic class", ex);
-//            }
-//        }
+    	     classDefinition.append("}\n");
+            return classDefinition;
     }
 
-    private static String determineFieldType(Object value) {
-        // Determine the field type based on the value type
-        if (value instanceof String) {
-            return "String";
-        } else if (value instanceof Integer) {
-            return "int";
-        } else if (value instanceof Long) {
-            return "long";
-        } else if (value instanceof Double) {
-            return "double";
-        } else if (value instanceof Boolean) {
-            return "boolean";
-        } else {
-            return "Object";
-        }
-    }
-
-
-//    private static Class<?> defineClass(String className, String classDefinition) {
-//        // Define the class using Java's built-in class loader
-//        try {
-//            return Class.forName(className);
-//        } catch (ClassNotFoundException e) {
-//            byte[] classBytes = classDefinition.getBytes();
-//            return new DynamicClassLoader().defineDynamicClass(className, classBytes, 0, classBytes.length, null);
-//        }
-//    }
-
- //////////////////////////////////////////////////////////////////   
-
-    
-//    private static class DynamicClassLoader extends ClassLoader {
-//        public Class<?> defineDynamicClass(String name, byte[] b, int off, int len, ProtectionDomain protectionDomain) {
-//            return super.defineClass(name, b, off, len, protectionDomain);
-//        }
-//    }
-    
-//    private static Class<?> defineClass(String className, String classDefinition) {
-//        // Define the class using Java's built-in class loader
-//        try {
-//            return Class.forName(className);
-//        } catch (ClassNotFoundException e) {
-//            byte[] classBytes = classDefinition.getBytes();
-//            return new DynamicClassLoader().defineDynamicClass(className, classBytes, 0, classBytes.length, null);
-//        }
-   
-    
-    //////////////////////////////////////////////////////////////////////////
-    
-//    private static class DynamicClassLoader extends ClassLoader {
-//        public Class<?> defineDynamicClass(String name, byte[] b, int off, int len, ProtectionDomain protectionDomain) {
-//            return super.defineClass(name, b, off, len, protectionDomain);
-//        }
-//    }
+  
 	public static Class<?> createClass(String classDefinition, String className) throws Exception {
 	    // Load the Java Compiler
 	    JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
@@ -168,31 +84,37 @@ public class DynamicModelGenerator {
 	private static void generateFields(List<Map<String, Object>> dataList, StringBuilder classDefinition,String Model) {
 		
 	    for (Map<String, Object> field : dataList) {
-//	        List<Map<String, Object>> fieldsList = (List<Map<String, Object>>) data.get("fields");
-//	        if (fieldsList == null) {
-//	            // Handle the case where fieldsList is null (optional)
-//	            continue; // Skip processing this data entry
-//	        }
-//	        for (Map<String, Object> field : fieldsList) {
-	    	 
+//	    	System.out.println(field);
 	            String accessMethod = (String) field.get("access_method");
 	            String fieldName = (String) field.get("column_name");
 	            String fieldType = (String) field.get("data_type");
-	            String fieldAnnonations = (String) field.get("annonations");
-	            if (fieldAnnonations != null) {
-          		  System.out.println(fieldAnnonations);
-		                   classDefinition.append(fieldAnnonations).append("\n");
-  		        }else {
-  		        	  classDefinition.append("\n");
-  		        }
-	            // If the fieldType is an object or an array, handle it recursively
-	           
+	            Object annotationsValue =  field.get("annonations");
+//	        	System.out.println(fieldName + " "+annotationsValue);
+	        	 if (annotationsValue == null) {
+	        		 classDefinition.append("\n");
+	        	    } 
+	        	 else if(annotationsValue instanceof String) {	        		   
+	                String annotationsString = (String) annotationsValue;            
+	                classDefinition.append(annotationsString).append("\n");
+	            } else if (annotationsValue instanceof ArrayList) {
+	                // If annotationsValue is an ArrayList
+	                ArrayList<String> annotationsList = (ArrayList<String>) annotationsValue;
+	                // Convert ArrayList to array if needed
+	                String[] annotationsArray = annotationsList.toArray(new String[0]);
+	               
+	                for (String annotation : annotationsArray) {
+	                	   classDefinition.append(annotation).append("\n");
+	                }
+	            } else {	                
+	                System.err.println("Unexpected type for annotations: " + annotationsValue.getClass());
+	            }
+	          
+	            // If the fieldType is an object or an array, handle it recursively	           
 	            if (fieldType.equals("object")) {
 	                // Generate the class definition for the nested object
 	                classDefinition.append(accessMethod).append(" ");
-	                String convertedString = convertToLowerCaseFirstLetter(fieldName);
-	                classDefinition.append(convertedString);
-	               
+	                String convertedString = convertToUpperCaseFirstLetter(fieldName);
+	                classDefinition.append(convertedString);	               
 	                classDefinition.append(" ").append(fieldName).append(";\n");
 	            } else if (fieldType.equals("array")) {
 	                // Generate the class definition for the array of objects
@@ -200,25 +122,81 @@ public class DynamicModelGenerator {
 	                classDefinition.append(accessMethod).append(" ");
 	                classDefinition.append("List<");
 //	                System.out.println(generateDynamicModelClass((List<Map<String, Object>>) field.get("nested_fields"), fieldName).getName());
-	                String convertedString = convertToLowerCaseFirstLetter(fieldName);
-	                classDefinition.append(convertedString);
-	                
+	                String convertedString = convertToUpperCaseFirstLetter(fieldName);
+	                classDefinition.append(convertedString);	                
 	                classDefinition.append("> ").append(fieldName).append(";\n");
 	            } else {
-	                // Regular field
-	            	 
+	                // Regular field	            	 
 	                classDefinition.append(accessMethod).append(" ").append(fieldType).append(" ").append(fieldName).append(";\n");
 	            }
 	        }
 	    } 
-//	}
 
-	 public static String convertToLowerCaseFirstLetter(String original) {
+
+	 public static String convertToUpperCaseFirstLetter(String original) {
 	        if (original == null || original.isEmpty()) {
 	            return original;
 	        }
 	        return Character.toUpperCase(original.charAt(0)) + original.substring(1);
 	    }
+	 
+	 
+	 
+	 
+	  private static String determineFieldType(Object value) {
+	        // Determine the field type based on the value type
+	        if (value instanceof String) {
+	            return "String";
+	        } else if (value instanceof Integer) {
+	            return "int";
+	        } else if (value instanceof Long) {
+	            return "long";
+	        } else if (value instanceof Double) {
+	            return "double";
+	        } else if (value instanceof Boolean) {
+	            return "boolean";
+	        } else {
+	            return "Object";
+	        }
+	    }
+
+
+//	    private static Class<?> defineClass(String className, String classDefinition) {
+//	        // Define the class using Java's built-in class loader
+//	        try {
+//	            return Class.forName(className);
+//	        } catch (ClassNotFoundException e) {
+//	            byte[] classBytes = classDefinition.getBytes();
+//	            return new DynamicClassLoader().defineDynamicClass(className, classBytes, 0, classBytes.length, null);
+//	        }
+//	    }
+
+	 //////////////////////////////////////////////////////////////////   
+
+	    
+//	    private static class DynamicClassLoader extends ClassLoader {
+//	        public Class<?> defineDynamicClass(String name, byte[] b, int off, int len, ProtectionDomain protectionDomain) {
+//	            return super.defineClass(name, b, off, len, protectionDomain);
+//	        }
+//	    }
+	    
+//	    private static Class<?> defineClass(String className, String classDefinition) {
+//	        // Define the class using Java's built-in class loader
+//	        try {
+//	            return Class.forName(className);
+//	        } catch (ClassNotFoundException e) {
+//	            byte[] classBytes = classDefinition.getBytes();
+//	            return new DynamicClassLoader().defineDynamicClass(className, classBytes, 0, classBytes.length, null);
+//	        }
+	   
+	    
+	    //////////////////////////////////////////////////////////////////////////
+	    
+//	    private static class DynamicClassLoader extends ClassLoader {
+//	        public Class<?> defineDynamicClass(String name, byte[] b, int off, int len, ProtectionDomain protectionDomain) {
+//	            return super.defineClass(name, b, off, len, protectionDomain);
+//	        }
+//	    }
 }
    
 
