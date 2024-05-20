@@ -29,4 +29,7 @@ public class Employee implements BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
+    public String getEmployee_number() {
+        return employee_number;
+    }
 }

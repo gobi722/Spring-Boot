@@ -1,5 +1,6 @@
 package com.example.adminservice.Controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.adminservice.Model.User;
@@ -33,9 +36,8 @@ public class CrudController {
         return ResponseEntity.ok("Accessed protected resource");
     }
     
-
     @PostMapping("/{entityType}")
-    public ResponseEntity<?> saveEntity(@PathVariable String entityType, @RequestBody Map<String, Object> params) {
+    public ResponseEntity<?> saveEntity(@PathVariable String entityType, @RequestBody Object params) {
         try {
             entityCrudService.saveEntity(entityType, params);
             return responseService.successResponse("Entity saved successfully");
@@ -44,26 +46,46 @@ public class CrudController {
         	 return responseService.badRequest("Failed to save entity:" + e.getMessage());
         }
     }
-//        @GetMapping("/{entityType}/{id}")
-//        public ResponseEntity<?> getEntityById(@PathVariable String entityType, @PathVariable Long id) {
-//            try {
-//                ResponseEntity<?> entityResponse = entityCrudService.getById(entityType, id);
-//                
-//                if (entityResponse.getStatusCode() == HttpStatus.NOT_FOUND) {
-//                	 return responseService.badRequest("Entity not found");
-//                }
-//                
-//                if (!entityResponse.getStatusCode().is2xxSuccessful()) {
-//                	 return responseService.badRequest("Error occurred: " + entityResponse.getBody());
-//                }
-//                
-//                return entityResponse; // Return the response received from getById method directly
-//            } catch (ClassNotFoundException e) {
-//            	 return responseService.badRequest("Class not found: " + e.getMessage());
-//            } catch (Exception e) {
-//            	 return responseService.badRequest("Error occurred: " + e.getMessage());
-//            }
-//        }
-
-
+    @GetMapping("/{entityType}/{id}")
+    public ResponseEntity<?> getEntityById(@PathVariable String entityType, @PathVariable Long id) {
+        try {
+            BaseEntity entity = entityCrudService.getEntityById(entityType, id);
+            return responseService.successResponse(entity);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return responseService.badRequest("Failed to retrieve entity: " + e.getMessage());
+        }
+    }
+    @GetMapping("/{entityType}")
+    public ResponseEntity<?> getAllEntities(@PathVariable String entityType) {
+        try {
+            List<?> entities = entityCrudService.getAllEntities(entityType);
+            return responseService.successResponse(entities);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return responseService.badRequest("Failed to retrieve entities: " + e.getMessage());
+        }
+    }
+    @PutMapping("/{entityType}/{id}")
+    public ResponseEntity<?> upsertEntity(@PathVariable String entityType, @PathVariable Long id, @RequestBody Map<String, Object> params) {
+        try {
+            entityCrudService.upsertEntity(entityType, id, params);
+            return responseService.successResponse("Entity upserted successfully");
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return responseService.badRequest("Failed to upsert entity: " + e.getMessage());
+        }
+    } 
+    @GetMapping("/filter/{entityType}")
+    public ResponseEntity<?> getEntitiesByCriteria(@PathVariable String entityType, @RequestParam Map<String, String> criteria) {
+        try {
+        	 List<? extends BaseEntity>entities = entityCrudService.getEntitiesByCriteria(entityType, criteria);
+            return responseService.successResponse(entities);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return responseService.badRequest("Failed to retrieve entities: " + e.getMessage());
+        }
+    }
+    
+    
 }
