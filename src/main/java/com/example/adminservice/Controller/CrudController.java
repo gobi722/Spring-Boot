@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,6 +87,15 @@ public class CrudController {
             return responseService.badRequest("Failed to retrieve entities: " + e.getMessage());
         }
     }
-    
+    @DeleteMapping("/{entityType}/all")
+    public ResponseEntity<?> deleteAllEntities(@PathVariable String entityType) {
+        try {
+            entityCrudService.deleteAllEntities(entityType);
+            return responseService.successResponse("All entities of type " + entityType + " deleted successfully");
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return responseService.badRequest("Failed to delete entities: " + e.getMessage());
+        }
+    }  
     
 }

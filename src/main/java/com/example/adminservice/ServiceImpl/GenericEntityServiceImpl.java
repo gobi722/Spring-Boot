@@ -58,4 +58,8 @@ System.out.print(jpql.toString());
 
         return query.getResultList();
     }
+    @Transactional
+    public <T extends BaseEntity> void deleteAllEntities(Class<T> clazz) {
+        entityManager.createQuery("DELETE FROM " + clazz.getSimpleName()).executeUpdate();
+    }
 }

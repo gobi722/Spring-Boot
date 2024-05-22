@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.EntityCrudService;
-import com.example.adminservice.Service.GenericCrudService;
+
+import jakarta.persistence.criteria.CriteriaDelete;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -91,5 +92,12 @@ public class EntityCrudServiceImpl implements EntityCrudService {
         String packageName = "com.example.adminservice.Model."; // Adjust the package name accordingly
         Class<? extends BaseEntity> clazz = (Class<? extends BaseEntity>) Class.forName(packageName + entityType);
         return genericEntityServiceImpl.getEntitiesByCriteria(clazz, criteria);
+    }
+    @Override
+    public void deleteAllEntities(String entityType) throws Exception {
+        String packageName = "com.example.adminservice.Model."; // Adjust the package name accordingly
+        Class<? extends BaseEntity> clazz = (Class<? extends BaseEntity>) Class.forName(packageName + entityType);
+        genericEntityServiceImpl.deleteAllEntities(clazz);
+        
     }
 }

@@ -11,5 +11,7 @@ public interface EntityCrudService {
 	 BaseEntity getEntityById(String entityType, Long id) throws Exception;
 	 void upsertEntity(String entityType, Long id, Map<String, Object> params) throws Exception;
 	 List<? extends BaseEntity> getEntitiesByCriteria(String entityType, Map<String, String> criteria) throws Exception;
+	 public void deleteAllEntities(String entityType) throws Exception;
+
 }
 

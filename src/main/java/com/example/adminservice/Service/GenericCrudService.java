@@ -9,4 +9,5 @@ public interface GenericCrudService {
     <T extends BaseEntity> T getEntityById(Class<T> clazz, Long id);
     <T extends BaseEntity> void saveOrUpdateEntity(T entity);
     <T extends BaseEntity> List<T> getEntitiesByCriteria(Class<T> clazz, Map<String, String> criteria);
+    <T extends BaseEntity> void deleteAllEntities(Class<T> clazz);
 }

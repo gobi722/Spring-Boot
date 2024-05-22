@@ -26,7 +26,18 @@ public class FileUploadController {
             List<String> fileUrl = s3Service.uploadFiles(file, category, refId);;
             return ResponseService.successResponse(fileUrl);
         } catch (Exception e) {
-            return ResponseService.badRequest(e.getMessage());
+        	 e.printStackTrace();
+             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteFile(@RequestParam("category") String category, @RequestParam("refId") String refId, @RequestParam("fileName") String fileName) {
+        try {
+            s3Service.deleteFile(category, refId, fileName);
+            return ResponseService.successResponse("File deleted successfully.");
+        } catch (Exception e) {
+        	 e.printStackTrace();
+              return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
