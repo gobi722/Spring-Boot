@@ -6,11 +6,13 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.example.adminservice.Config.Condition;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.GenericCrudService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -50,7 +52,7 @@ public class GenericEntityServiceImpl implements GenericCrudService {
             jpql.append("e.").append(key).append(" = :").append(key).append(" AND ");
         }
         jpql.setLength(jpql.length() - 5); 
-System.out.print(jpql.toString());
+        System.out.print(jpql.toString());
         TypedQuery<T> query = entityManager.createQuery(jpql.toString(), clazz);
         for (Map.Entry<String, String> entry : criteria.entrySet()) {
             query.setParameter(entry.getKey(), entry.getValue());
@@ -62,4 +64,17 @@ System.out.print(jpql.toString());
     public <T extends BaseEntity> void deleteAllEntities(Class<T> clazz) {
         entityManager.createQuery("DELETE FROM " + clazz.getSimpleName()).executeUpdate();
     }
+    @Transactional
+    @SuppressWarnings("unchecked")
+    public List<?> executeDynamicQuery(String queryString, List<Condition> params) {
+    	System.out.println(params);
+    	System.out.println(queryString);
+        Query query = entityManager.createQuery(queryString);
+        for (Condition condition : params) {
+            query.setParameter(condition.getField(), condition.getValue());
+        }
+
+        return query.getResultList();
+    }
+    
 }

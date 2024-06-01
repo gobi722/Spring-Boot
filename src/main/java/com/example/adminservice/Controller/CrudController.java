@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.adminservice.Config.DynamicQueryBuilder;
+import com.example.adminservice.Config.QueryInput;
 import com.example.adminservice.Model.User;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.EntityCrudService;
@@ -97,5 +99,16 @@ public class CrudController {
             return responseService.badRequest("Failed to delete entities: " + e.getMessage());
         }
     }  
-    
+    @PostMapping("/build/oo/oo")
+    public ResponseEntity<?> buildAndExecuteQuery(@RequestBody QueryInput input) {
+        try {
+            String queryString = DynamicQueryBuilder.buildQuery(input);
+           
+            List<?> result = entityCrudService.executeDynamicQuery(queryString, input.getFilters());
+            return responseService.successResponse(result);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

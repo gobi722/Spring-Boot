@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
+import com.example.adminservice.Config.Condition;
+
 public interface EntityCrudService {
 	 void saveEntity(String entityType, Object params) throws Exception;//
 	 List<?> getAllEntities(String entityType) throws Exception;
@@ -12,6 +14,7 @@ public interface EntityCrudService {
 	 void upsertEntity(String entityType, Long id, Map<String, Object> params) throws Exception;
 	 List<? extends BaseEntity> getEntitiesByCriteria(String entityType, Map<String, String> criteria) throws Exception;
 	 public void deleteAllEntities(String entityType) throws Exception;
+	 List<?> executeDynamicQuery(String queryString, List<Condition> list) throws Exception;//
 
 }
 

@@ -32,4 +32,8 @@ public class Employee implements BaseEntity {
     public String getEmployee_number() {
         return employee_number;
     }
+
+public String getDepartment() {
+    return department;
+}
 }

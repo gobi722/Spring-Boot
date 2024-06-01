@@ -1,0 +1,216 @@
+11:05:38.122 | Starting AdminServiceApplication using Java 17.0.10 with PID 77124 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:05:38.124 | No active profile set, falling back to 1 default profile: "default"
+11:05:38.551 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:05:38.565 | Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+11:05:38.796 | Tomcat initialized with port 8081 (http)
+11:05:38.801 | Initializing ProtocolHandler ["http-nio-8081"]
+11:05:38.802 | Starting service [Tomcat]
+11:05:38.802 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:05:38.827 | Initializing Spring embedded WebApplicationContext
+11:05:38.827 | Root WebApplicationContext: initialization completed in 684 ms
+11:05:38.900 | HikariPool-1 - Starting...
+11:05:39.052 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54b44879
+11:05:39.053 | HikariPool-1 - Start completed.
+11:05:39.076 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:05:39.105 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:05:39.121 | HHH000026: Second-level cache disabled
+11:05:39.230 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:05:39.618 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:05:39.619 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:05:39.893 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:05:40.003 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@11e36e5c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2620264e, org.springframework.security.web.context.SecurityContextHolderFilter@7e474bd, org.springframework.security.web.header.HeaderWriterFilter@2b33e616, org.springframework.web.filter.CorsFilter@126ae0ca, org.springframework.security.web.authentication.logout.LogoutFilter@15d0f2a3, com.example.adminservice.ServiceImpl.JwtRequestFilter@35025a0a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@639d808a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b186fb8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@59e24c62, org.springframework.security.web.session.SessionManagementFilter@499f9003, org.springframework.security.web.access.ExceptionTranslationFilter@175c4ae5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7306836f]
+11:05:40.006 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:05:40.006 | Will not secure Mvc [pattern='/api/register']
+11:05:40.006 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:05:40.006 | Will not secure Mvc [pattern='/api/login']
+11:05:40.140 | Starting ProtocolHandler ["http-nio-8081"]
+11:05:40.147 | Tomcat started on port 8081 (http) with context path ''
+11:05:40.153 | Started AdminServiceApplication in 2.247 seconds (process running for 2.559)
+11:07:21.136 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:07:21.137 | Initializing Servlet 'dispatcherServlet'
+11:07:21.138 | Completed initialization in 1 ms
+11:07:58.329 | Application shutdown requested.
+11:07:58.331 | Stopping ProtocolHandler ["http-nio-8081"]
+11:07:58.334 | Closing JPA EntityManagerFactory for persistence unit 'default'
+11:07:58.335 | HikariPool-1 - Shutdown initiated...
+11:07:58.340 | HikariPool-1 - Shutdown completed.
+11:08:01.094 | Starting AdminServiceApplication using Java 17.0.10 with PID 79295 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:08:01.095 | No active profile set, falling back to 1 default profile: "default"
+11:08:01.410 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:08:01.427 | Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
+11:08:01.673 | Tomcat initialized with port 8081 (http)
+11:08:01.678 | Initializing ProtocolHandler ["http-nio-8081"]
+11:08:01.679 | Starting service [Tomcat]
+11:08:01.680 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:08:01.704 | Initializing Spring embedded WebApplicationContext
+11:08:01.704 | Root WebApplicationContext: initialization completed in 592 ms
+11:08:01.770 | HikariPool-1 - Starting...
+11:08:01.921 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3dfe92ef
+11:08:01.922 | HikariPool-1 - Start completed.
+11:08:01.945 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:08:01.964 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:08:01.978 | HHH000026: Second-level cache disabled
+11:08:02.074 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:08:02.449 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:08:02.450 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:08:02.708 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:08:02.819 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e1d3188, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5982255e, org.springframework.security.web.context.SecurityContextHolderFilter@1252d480, org.springframework.security.web.header.HeaderWriterFilter@4a1abba1, org.springframework.web.filter.CorsFilter@7306836f, org.springframework.security.web.authentication.logout.LogoutFilter@3d339541, com.example.adminservice.ServiceImpl.JwtRequestFilter@67acfde9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c61f9bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@42365c82, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e9c5db9, org.springframework.security.web.session.SessionManagementFilter@205d6f84, org.springframework.security.web.access.ExceptionTranslationFilter@2d10160a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4c5d1649]
+11:08:02.822 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:08:02.823 | Will not secure Mvc [pattern='/api/register']
+11:08:02.823 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:08:02.823 | Will not secure Mvc [pattern='/api/login']
+11:08:02.963 | Starting ProtocolHandler ["http-nio-8081"]
+11:08:02.970 | Tomcat started on port 8081 (http) with context path ''
+11:08:02.976 | Started AdminServiceApplication in 2.086 seconds (process running for 2.376)
+11:08:05.805 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:08:05.806 | Initializing Servlet 'dispatcherServlet'
+11:08:05.808 | Completed initialization in 2 ms
+11:08:21.737 | Application shutdown requested.
+11:08:21.739 | Stopping ProtocolHandler ["http-nio-8081"]
+11:08:21.743 | Closing JPA EntityManagerFactory for persistence unit 'default'
+11:08:21.744 | HikariPool-1 - Shutdown initiated...
+11:08:21.747 | HikariPool-1 - Shutdown completed.
+11:08:24.480 | Starting AdminServiceApplication using Java 17.0.10 with PID 79731 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:08:24.481 | No active profile set, falling back to 1 default profile: "default"
+11:08:24.795 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:08:24.806 | Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+11:08:25.036 | Tomcat initialized with port 8081 (http)
+11:08:25.041 | Initializing ProtocolHandler ["http-nio-8081"]
+11:08:25.042 | Starting service [Tomcat]
+11:08:25.042 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:08:25.067 | Initializing Spring embedded WebApplicationContext
+11:08:25.068 | Root WebApplicationContext: initialization completed in 568 ms
+11:08:25.138 | HikariPool-1 - Starting...
+11:08:25.292 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b9b17ce
+11:08:25.293 | HikariPool-1 - Start completed.
+11:08:25.313 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:08:25.338 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:08:25.352 | HHH000026: Second-level cache disabled
+11:08:25.446 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:08:25.837 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:08:25.839 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:08:26.138 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:08:26.256 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5982255e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7306836f, org.springframework.security.web.context.SecurityContextHolderFilter@59b8a801, org.springframework.security.web.header.HeaderWriterFilter@67263db7, org.springframework.web.filter.CorsFilter@e9c5db9, org.springframework.security.web.authentication.logout.LogoutFilter@7c1adb8a, com.example.adminservice.ServiceImpl.JwtRequestFilter@3b088163, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42365c82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46c47690, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@393aac93, org.springframework.security.web.session.SessionManagementFilter@14ea3ecf, org.springframework.security.web.access.ExceptionTranslationFilter@157ff8f8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1695f7cb]
+11:08:26.260 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:08:26.260 | Will not secure Mvc [pattern='/api/register']
+11:08:26.260 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:08:26.260 | Will not secure Mvc [pattern='/api/login']
+11:08:26.402 | Starting ProtocolHandler ["http-nio-8081"]
+11:08:26.410 | Tomcat started on port 8081 (http) with context path ''
+11:08:26.416 | Started AdminServiceApplication in 2.148 seconds (process running for 2.431)
+11:08:27.225 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:08:27.225 | Initializing Servlet 'dispatcherServlet'
+11:08:27.226 | Completed initialization in 1 ms
+11:08:54.692 | Application shutdown requested.
+11:08:54.695 | Stopping ProtocolHandler ["http-nio-8081"]
+11:08:54.700 | Closing JPA EntityManagerFactory for persistence unit 'default'
+11:08:54.701 | HikariPool-1 - Shutdown initiated...
+11:08:54.704 | HikariPool-1 - Shutdown completed.
+11:08:58.657 | Starting AdminServiceApplication using Java 17.0.10 with PID 80271 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:08:58.658 | No active profile set, falling back to 1 default profile: "default"
+11:08:58.978 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:08:58.989 | Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+11:08:59.207 | Tomcat initialized with port 8081 (http)
+11:08:59.212 | Initializing ProtocolHandler ["http-nio-8081"]
+11:08:59.213 | Starting service [Tomcat]
+11:08:59.213 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:08:59.236 | Initializing Spring embedded WebApplicationContext
+11:08:59.236 | Root WebApplicationContext: initialization completed in 560 ms
+11:08:59.303 | HikariPool-1 - Starting...
+11:08:59.447 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3dfe92ef
+11:08:59.448 | HikariPool-1 - Start completed.
+11:08:59.466 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:08:59.489 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:08:59.502 | HHH000026: Second-level cache disabled
+11:08:59.591 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:08:59.957 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:08:59.958 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:09:00.225 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:09:00.340 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3095c449, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@236bb278, org.springframework.security.web.context.SecurityContextHolderFilter@c1d9c40, org.springframework.security.web.header.HeaderWriterFilter@1a345c6c, org.springframework.web.filter.CorsFilter@7200702, org.springframework.security.web.authentication.logout.LogoutFilter@30b5f974, com.example.adminservice.ServiceImpl.JwtRequestFilter@67acfde9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@205d6f84, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@14ea3ecf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3eb29382, org.springframework.security.web.session.SessionManagementFilter@175c4ae5, org.springframework.security.web.access.ExceptionTranslationFilter@54151d07, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d414943]
+11:09:00.343 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:09:00.343 | Will not secure Mvc [pattern='/api/register']
+11:09:00.343 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:09:00.343 | Will not secure Mvc [pattern='/api/login']
+11:09:00.480 | Starting ProtocolHandler ["http-nio-8081"]
+11:09:00.487 | Tomcat started on port 8081 (http) with context path ''
+11:09:00.493 | Started AdminServiceApplication in 2.063 seconds (process running for 2.367)
+11:09:01.932 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:09:01.932 | Initializing Servlet 'dispatcherServlet'
+11:09:01.933 | Completed initialization in 1 ms
+11:09:06.197 | Application shutdown requested.
+11:09:06.202 | Stopping ProtocolHandler ["http-nio-8081"]
+11:09:06.208 | Closing JPA EntityManagerFactory for persistence unit 'default'
+11:09:06.209 | HikariPool-1 - Shutdown initiated...
+11:09:06.213 | HikariPool-1 - Shutdown completed.
+11:09:21.753 | Starting AdminServiceApplication using Java 17.0.10 with PID 80654 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:09:21.754 | No active profile set, falling back to 1 default profile: "default"
+11:09:22.080 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:09:22.091 | Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
+11:09:22.302 | Tomcat initialized with port 8081 (http)
+11:09:22.307 | Initializing ProtocolHandler ["http-nio-8081"]
+11:09:22.308 | Starting service [Tomcat]
+11:09:22.308 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:09:22.331 | Initializing Spring embedded WebApplicationContext
+11:09:22.332 | Root WebApplicationContext: initialization completed in 560 ms
+11:09:22.394 | HikariPool-1 - Starting...
+11:09:22.538 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6f986501
+11:09:22.539 | HikariPool-1 - Start completed.
+11:09:22.561 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:09:22.580 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:09:22.593 | HHH000026: Second-level cache disabled
+11:09:22.684 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:09:23.053 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:09:23.055 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:09:23.319 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:09:23.425 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@36003e90, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a1ddc7c, org.springframework.security.web.context.SecurityContextHolderFilter@499f9003, org.springframework.security.web.header.HeaderWriterFilter@7d3b4646, org.springframework.web.filter.CorsFilter@362fbd98, org.springframework.security.web.authentication.logout.LogoutFilter@2122b4bd, com.example.adminservice.ServiceImpl.JwtRequestFilter@2a8dd942, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5ca896af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e474bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11e36e5c, org.springframework.security.web.session.SessionManagementFilter@42365c82, org.springframework.security.web.access.ExceptionTranslationFilter@3f213e97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@209baf91]
+11:09:23.428 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:09:23.428 | Will not secure Mvc [pattern='/api/register']
+11:09:23.428 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:09:23.428 | Will not secure Mvc [pattern='/api/login']
+11:09:23.566 | Starting ProtocolHandler ["http-nio-8081"]
+11:09:23.573 | Tomcat started on port 8081 (http) with context path ''
+11:09:23.579 | Started AdminServiceApplication in 2.054 seconds (process running for 2.342)
+11:09:38.164 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:09:38.165 | Initializing Servlet 'dispatcherServlet'
+11:09:38.166 | Completed initialization in 1 ms
+11:11:28.934 | Application shutdown requested.
+11:11:28.939 | Stopping ProtocolHandler ["http-nio-8081"]
+11:11:28.944 | Closing JPA EntityManagerFactory for persistence unit 'default'
+11:11:28.945 | HikariPool-1 - Shutdown initiated...
+11:11:28.948 | HikariPool-1 - Shutdown completed.
+11:11:33.755 | Starting AdminServiceApplication using Java 17.0.10 with PID 82683 (/home/kt001/Documents/Spring boot/admin-service/target/classes started by kt001 in /home/kt001/Documents/Spring boot/admin-service)
+11:11:33.756 | No active profile set, falling back to 1 default profile: "default"
+11:11:34.070 | Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:11:34.087 | Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
+11:11:34.303 | Tomcat initialized with port 8081 (http)
+11:11:34.308 | Initializing ProtocolHandler ["http-nio-8081"]
+11:11:34.309 | Starting service [Tomcat]
+11:11:34.309 | Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:11:34.332 | Initializing Spring embedded WebApplicationContext
+11:11:34.332 | Root WebApplicationContext: initialization completed in 559 ms
+11:11:34.410 | HikariPool-1 - Starting...
+11:11:34.557 | HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3dfe92ef
+11:11:34.558 | HikariPool-1 - Start completed.
+11:11:34.580 | HHH000204: Processing PersistenceUnitInfo [name: default]
+11:11:34.600 | HHH000412: Hibernate ORM core version 6.4.4.Final
+11:11:34.614 | HHH000026: Second-level cache disabled
+11:11:34.708 | No LoadTimeWeaver setup: ignoring JPA class transformer
+11:11:35.079 | HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:11:35.081 | Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:11:35.345 | spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:11:35.462 | Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@71dac63f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36003e90, org.springframework.security.web.context.SecurityContextHolderFilter@5aa026e9, org.springframework.security.web.header.HeaderWriterFilter@693c7741, org.springframework.web.filter.CorsFilter@5a1ddc7c, org.springframework.security.web.authentication.logout.LogoutFilter@61868687, com.example.adminservice.ServiceImpl.JwtRequestFilter@67acfde9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39bd07fe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ca896af, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@362fbd98, org.springframework.security.web.session.SessionManagementFilter@1c61f9bf, org.springframework.security.web.access.ExceptionTranslationFilter@20f94e9a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3eb29382]
+11:11:35.466 | You are asking Spring Security to ignore Mvc [pattern='/api/register']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:11:35.466 | Will not secure Mvc [pattern='/api/register']
+11:11:35.466 | You are asking Spring Security to ignore Mvc [pattern='/api/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+11:11:35.466 | Will not secure Mvc [pattern='/api/login']
+11:11:35.602 | Starting ProtocolHandler ["http-nio-8081"]
+11:11:35.609 | Tomcat started on port 8081 (http) with context path ''
+11:11:35.615 | Started AdminServiceApplication in 2.078 seconds (process running for 2.399)
+11:11:37.196 | Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:11:37.197 | Initializing Servlet 'dispatcherServlet'
+11:11:37.198 | Completed initialization in 1 ms
+12:39:17.767 | Application shutdown requested.
+12:39:17.773 | Stopping ProtocolHandler ["http-nio-8081"]
+12:39:17.781 | Closing JPA EntityManagerFactory for persistence unit 'default'
+12:39:17.784 | HikariPool-1 - Shutdown initiated...
+12:39:17.787 | HikariPool-1 - Shutdown completed.

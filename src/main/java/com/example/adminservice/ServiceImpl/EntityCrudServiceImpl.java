@@ -3,6 +3,7 @@ package com.example.adminservice.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.adminservice.Config.Condition;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.EntityCrudService;
 
@@ -99,5 +100,9 @@ public class EntityCrudServiceImpl implements EntityCrudService {
         Class<? extends BaseEntity> clazz = (Class<? extends BaseEntity>) Class.forName(packageName + entityType);
         genericEntityServiceImpl.deleteAllEntities(clazz);
         
+    }
+    @Override
+    public List<?> executeDynamicQuery(String queryString,List<Condition> list) throws Exception {//, Map<String, Object> params List<Condition> list)
+        return genericEntityServiceImpl.executeDynamicQuery(queryString,list);//, params
     }
 }
