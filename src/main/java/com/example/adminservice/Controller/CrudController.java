@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.adminservice.Config.DynamicQueryBuilder;
-import com.example.adminservice.Config.QueryInput;
+import com.example.adminservice.Model.QueryInput;
 import com.example.adminservice.Model.User;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.EntityCrudService;
+import com.example.adminservice.ServiceImpl.DynamicQueryBuilder;
 import com.example.adminservice.ServiceImpl.ResponseService;
 
 import jakarta.persistence.EntityManager;
@@ -34,6 +34,7 @@ public class CrudController {
 	@Autowired
 	EntityCrudService entityCrudService;
 	ResponseService responseService;
+	
     @GetMapping("/resource")
     public ResponseEntity<?> getResource() {
         return ResponseEntity.ok("Accessed protected resource");
@@ -103,7 +104,7 @@ public class CrudController {
     public ResponseEntity<?> buildAndExecuteQuery(@RequestBody QueryInput input) {
         try {
             String queryString = DynamicQueryBuilder.buildQuery(input);
-           
+//            System.out.println(queryString  +"hi");
             List<?> result = entityCrudService.executeDynamicQuery(queryString, input.getFilters());
             return responseService.successResponse(result);
         } catch (Exception e) {

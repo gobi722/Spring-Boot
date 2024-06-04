@@ -1,4 +1,4 @@
-package com.example.adminservice.Config;
+package com.example.adminservice.Model;
 
 import java.util.List;
 import java.util.Map;

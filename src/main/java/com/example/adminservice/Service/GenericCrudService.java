@@ -3,7 +3,9 @@ package com.example.adminservice.Service;
 import java.util.List;
 import java.util.Map;
 
-import com.example.adminservice.Config.Condition;
+import com.example.adminservice.Model.Condition;
+
+
 
 public interface GenericCrudService {
     <T extends BaseEntity> void saveEntity(T entity);

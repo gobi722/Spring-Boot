@@ -1,4 +1,4 @@
-package com.example.adminservice.Config;
+package com.example.adminservice.Model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,6 +15,7 @@ public class Condition {
     public Condition(String column, Object value) {
         this.column = column;
         this.value = value;
+        this.operator  =operator;
     }
 
     public String getField() {
@@ -23,6 +24,13 @@ public class Condition {
 
     public void setField(String field) {
         this.column = field;
+    }
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String field) {
+        this.operator = operator;
     }
 
     public Object getValue() {

@@ -52,4 +52,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+  
+    public void setName(String password) {
+        this.name = name;
+    }
 }

@@ -3,13 +3,15 @@ package com.example.adminservice.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.adminservice.Config.Condition;
+import com.example.adminservice.Model.Condition;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.EntityCrudService;
 
 import jakarta.persistence.criteria.CriteriaDelete;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -41,10 +43,13 @@ public class EntityCrudServiceImpl implements EntityCrudService {
         for (Map.Entry<String, Object> entry : dataMap.entrySet()) {
             String fieldName = entry.getKey();
             Object fieldValue = entry.getValue();
-
+            
             try {
                 Field field = clazz.getDeclaredField(fieldName);
                 field.setAccessible(true);
+                if (field.getType() == Date.class && fieldValue instanceof String) {
+                    fieldValue = parseDate((String) fieldValue);
+                }
                 field.set(entity, fieldValue);
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException("Failed to set field: " + fieldName, e);
@@ -104,5 +109,9 @@ public class EntityCrudServiceImpl implements EntityCrudService {
     @Override
     public List<?> executeDynamicQuery(String queryString,List<Condition> list) throws Exception {//, Map<String, Object> params List<Condition> list)
         return genericEntityServiceImpl.executeDynamicQuery(queryString,list);//, params
+    }
+    private Date parseDate(String dateString) throws Exception {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        return dateFormat.parse(dateString);
     }
 }

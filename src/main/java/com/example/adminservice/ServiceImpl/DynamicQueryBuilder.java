@@ -1,16 +1,21 @@
-package com.example.adminservice.Config;
+package com.example.adminservice.ServiceImpl;
 
 import java.util.*;
 
+import com.example.adminservice.Model.Condition;
+import com.example.adminservice.Model.QueryInput;
+import com.example.adminservice.Model.Subquery;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 
 public class DynamicQueryBuilder {
 	 private static final ObjectMapper mapper = new ObjectMapper();
 	  private static final Map<String, String> operatorMap = new HashMap<>();
+	  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	  static {
 	        operatorMap.put("EQUALS", "=");
 	        operatorMap.put("NOTEQUALS", "!=");
@@ -20,6 +25,8 @@ public class DynamicQueryBuilder {
 	        operatorMap.put("LESSTHANOREQUAL", "<=");
 	        operatorMap.put("GREATERTHANOREQUAL", ">=");
 	        operatorMap.put("IN", "IN");
+	        operatorMap.put("BETWEEN", "BETWEEN");
+	         
 	        // Add more mappings as needed
 	    }
 	  public static String buildQuery(QueryInput input) {
@@ -64,6 +71,8 @@ public class DynamicQueryBuilder {
 		    if (value instanceof String) {
 //		    	 System.out.println(value + "o");
 		    	 return "'" + value + "'";
+		    }else if (value instanceof Date) {
+		        return "'" + dateFormat.format((Date) value) + "'";
 		    } else if (value instanceof LinkedHashMap) {
 		        @SuppressWarnings("unchecked")
 		        LinkedHashMap<String, Object> subqueryMap = (LinkedHashMap<String, Object>) value;

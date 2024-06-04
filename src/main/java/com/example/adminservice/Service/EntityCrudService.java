@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
-import com.example.adminservice.Config.Condition;
+import com.example.adminservice.Model.Condition;
+
+
 
 public interface EntityCrudService {
 	 void saveEntity(String entityType, Object params) throws Exception;//

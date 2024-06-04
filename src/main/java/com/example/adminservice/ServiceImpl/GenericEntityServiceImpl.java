@@ -1,18 +1,22 @@
 package com.example.adminservice.ServiceImpl;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.example.adminservice.Config.Condition;
+import com.example.adminservice.Model.Condition;
 import com.example.adminservice.Service.BaseEntity;
 import com.example.adminservice.Service.GenericCrudService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -67,14 +71,46 @@ public class GenericEntityServiceImpl implements GenericCrudService {
     @Transactional
     @SuppressWarnings("unchecked")
     public List<?> executeDynamicQuery(String queryString, List<Condition> params) {
-    	System.out.println(params);
-    	System.out.println(queryString);
+//    	System.out.println(params);
+//    	System.out.println(queryString);
         Query query = entityManager.createQuery(queryString);
+    
+        
         for (Condition condition : params) {
-            query.setParameter(condition.getField(), condition.getValue());
+            setParameter(query, condition);
         }
 
         return query.getResultList();
     }
-    
+    private void setParameter(Query query, Condition condition) {
+        String field = condition.getField();
+        String operator = condition.getOperator();
+        Object value = condition.getValue();
+        
+        if ("=".equals(operator)) {
+            query.setParameter(field, value); // For non-date comparisons
+        } else {
+            if (value instanceof String) {
+                Date dateValue = parseDate((String) value);
+                if (dateValue != null) {
+                    query.setParameter(field, dateValue, TemporalType.TIMESTAMP);
+                } else {
+                    throw new IllegalArgumentException("Invalid date format for condition: " + value);
+                }
+            } else {
+                throw new IllegalArgumentException("Invalid value type for condition: " + value.getClass());
+            }
+        }
+    }
+
+    private Date parseDate(String dateString) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            return dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle or log the exception as needed
+            return null;
+        }
+    }
+
 }

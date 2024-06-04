@@ -12,6 +12,7 @@ import com.example.adminservice.Service.UserService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,13 +21,14 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     @PersistenceContext
    	private EntityManager entityManager;
-
+    @Transactional
     public User register(User user) {
     	   user.setPassword(passwordEncoder.encode(user.getPassword()));
          entityManager.persist(user);
          entityManager.flush();
          return user;
     }
+    @Transactional
     public void changePassword(String username, String newPassword) {
     	
         User user =findByUsername(username);
